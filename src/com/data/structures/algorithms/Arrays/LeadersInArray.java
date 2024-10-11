@@ -49,7 +49,7 @@ public class LeadersInArray {
         for(int i=n-2; i>=0; i--)
         {
             // we will check if current element is greater than max element so far
-            // if yes, then it means all the elements right of the current element are greater
+            // if yes, then it means all the elements right of the current element are smaller
             // hence, current element is also a leader
             if(arr[i] > max)
             {
