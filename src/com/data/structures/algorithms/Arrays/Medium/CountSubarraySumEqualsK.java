@@ -1,5 +1,6 @@
-package com.data.structures.algorithms.Arrays.Easy;
+package com.data.structures.algorithms.Arrays.Medium;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 // Note all array elements will be Positive
@@ -23,7 +24,14 @@ public class CountSubarraySumEqualsK {
         return count;
     }
 
-    // Better Solution T(N) = O(N^2)
+    /**
+     * T(N) = O(N^2)
+     * Select all possible starting indices(say i) and all possible ending indices(say j) to generate all possible subarrays.
+     * For every index i, the possible ending index j can vary from i to n-1.
+     * In inner loop we will calculate the sum of all the elements(of that particular subarray)
+     * If the sum is equal to k, we will do count++
+     * at last return count
+     **/
     static int subarraySumBetter(int[] nums, int k) {
         int count = 0;
         for(int i=0; i<nums.length; i++)
@@ -42,7 +50,7 @@ public class CountSubarraySumEqualsK {
         return count;
     }
 
-    // Optimal Solution T(N) = O(2N)
+    // Optimal Solution T(N) = O(2N) S(n) = O(N)
     static int subarraySumOptimal(int[] nums, int k) {
         if(nums.length == 1)
         {
@@ -76,6 +84,41 @@ public class CountSubarraySumEqualsK {
         return count;
     }
 
+    /**
+     * Using HashMap
+     * T(N) = O(N) S(N) = O(N) for map data structure
+     * Declare a map to store the prefix sums and it's occurence
+     * we will run a loop(say i) from index 0 to n-1
+     * For each index i, we will do the following:
+     -- We will add the current element i.e. arr[i] to the sum.
+     -- calculate prefixSum = sum-K
+     -- Check if prefixSum exists in hashmap, if YES, then count += value of prefixSum from map
+     -- Check if sum exists in hashmap, if NO, then add sum with map.getOrDefault(sum, 0)+1  in map
+     * return count
+     **/
+    public static int subarraySumOptimalSol(int[] nums, int k) {
+        int sum = 0;
+        int count = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        // storing sum, occurence in map
+        map.put(0, 1);
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+
+            // calculate prefix sum of remaining subarray
+            int prefSum = sum - k;
+
+            // checking is prefSum exists as key in map
+            if (map.containsKey(prefSum) == true) {
+                count += map.get(prefSum);
+            }
+
+            // Update the map with the current sum and its frequency
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
+
     // main function
     public static void main(String[] args)
     {
@@ -87,6 +130,6 @@ public class CountSubarraySumEqualsK {
             arr[i] = s.nextInt();
         }
         int K = s.nextInt();
-        System.out.println(subarraySumOptimal(arr, K));
+        System.out.println(subarraySumOptimalSol(arr, K));
     }
 }
