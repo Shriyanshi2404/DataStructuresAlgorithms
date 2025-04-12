@@ -1,4 +1,4 @@
-package com.data.structures.algorithms.Arrays.Easy;
+package com.data.structures.algorithms.Arrays.Medium;
 
 import java.util.HashMap;
 import java.util.Scanner;
