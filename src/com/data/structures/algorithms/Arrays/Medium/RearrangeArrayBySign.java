@@ -5,27 +5,29 @@ import java.util.Scanner;
 
 public class RearrangeArrayBySign {
 
-    // Brute force approach
-    // T(n) = O(N + N/2)
-    // picking positive and negative elements in separate two arrays
-    // after separating, just start assigning elements in exisitng array in a manner like positive element, negative element and so on
+    /*
+     Brute force approach
+     T(n) = O(N+N/2) S(n) = O(N)
+     picking positive and negative elements in separate two arrays
+     after separating, just start assigning elements in existing array in a manner like positive element, negative element and so on
+     */
     public static int[] rearrangeArray(int[] nums)
     {
         int n=nums.length;
         int positives[]=new int[n/2];
         int negatives[]=new int[n/2];
-        int index=0,l=0;
+        int pos=0,neg=0;
         for(int i=0;i<nums.length;i++)
         {
             if(nums[i]>0)
             {
-                positives[index]=nums[i];
-                index++;
+                positives[pos]=nums[i];
+                pos++;
             }
             else
             {
-                negatives[l]=nums[i];
-                l++;
+                negatives[neg]=nums[i];
+                neg++;
             }
         }
 
@@ -38,16 +40,17 @@ public class RearrangeArrayBySign {
             p1++;
             n1++;
         }
-
         return nums;
     }
 
-    // Optimal approach
-    // T(n) = O(N)
-    // Here, we will traverse array only once.
-    // Idea is to keep posIndex and negIndex pointer at 0, 1 respectively (since array should have positive element at 0th index)
-    // during traversal, if we found positive element, then store current element in new array at index posIndex and increment posIndex by 2.
-    // if we found negative element, then store current element in new array at index negIndex and increment negIndex by 2.
+    /*
+     Optimal approach
+     T(n) = O(N) S(n) = O(N)
+     Here, we will traverse array only once.
+     Idea is to keep posIndex and negIndex pointer at 0, 1 respectively (since array should have positive element at 0th index)
+     during traversal, if we found positive element, then store current element in new array at index posIndex and increment posIndex by 2.
+     if we found negative element, then store current element in new array at index negIndex and increment negIndex by 2.
+     */
     public static int[] rearrangeArrayOptimalApproach(int[] nums) {
         int n=nums.length;
         int ans[]=new int[n];
@@ -69,13 +72,15 @@ public class RearrangeArrayBySign {
         return ans;
     }
 
-    // Brute force approach
-    // T(n) = O(2N)
-    // here positives and negatives might not be equal in number
-    // Idea: all the positive numbers would be placed at even indices (2*i) and negatives at the odd indices (2*i+1)
-    // we now put all the remaining elements ( whether positive or negative) at the last of the array by running a single loop
-    // {if positives > negatives} then will run a loop from neg.size() to pos.size() and start assigning positive elements to end of array.
-    // {if negatives > positives} then will run a loop from pos.size() to neg.size() and start assigning negative element to end of array.
+    /*
+     Brute force approach
+     T(n) = O(2N)
+     here positives and negatives might not be equal in number
+     Idea: all the positive numbers would be placed at even indices (2*i) and negatives at the odd indices (2*i+1)
+     we now put all the remaining elements ( whether positive or negative) at the last of the array by running a single loop
+     {if positives > negatives} then will run a loop from neg.size() to pos.size() and start assigning positive elements to end of array.
+     {if negatives > positives} then will run a loop from pos.size() to neg.size() and start assigning negative element to end of array.
+     */
     public static int[] rearrangeArrayVariety2(int[] nums) {
         int n=nums.length;
         int ans[]=new int[n];

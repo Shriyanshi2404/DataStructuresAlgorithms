@@ -22,9 +22,11 @@ public class SortColors {
         }
     }
 
-    // better approach
-    // will keep count of 0's, 1's and 2's and then place each value according to frequency in same array
-    // T(n) = O(2N)
+    /*
+     better approach
+     will keep count of 0's, 1's and 2's and then place each value according to frequency in same array
+     T(n) = O(2N)
+     */
     public static void sortColorsBetterSolution(int[] nums) {
         int n=nums.length;
         // will keep a count of 0's, 1's and 2's
@@ -56,19 +58,51 @@ public class SortColors {
         }
     }
 
-    public static void swap(int[] nums, int i, int j)
-    {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    /*
+    better approach
+    T(n) = O(N) S(n) = O(1)
+    1. we will keep count of 0's, 1's and 2's and then place each value according to frequency in same array
+    2. Traverse through array for 1st time and count all 0's, 1's and 2's
+    3. Now run a traverse the array again, and start assigning 0's, 1's and 2's
+        - Start assigning 0's until count of 0's becomes 0
+        - then start assigning 1's until count of 1's becomes 0
+        - then start assigning 2's until count of 2's becomes 0
+    */
+    public void sortColorsBetterApproach(int[] nums) {
+        int zeroes = 0, ones = 0, twos = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0)
+                zeroes++;
+            else if (nums[i] == 1)
+                ones++;
+            else
+                twos++;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (zeroes != 0) {
+                nums[i] = 0;
+                zeroes--;
+            } else if (ones != 0) {
+                nums[i] = 1;
+                ones--;
+            } else if (twos != 0) {
+                nums[i] = 2;
+                twos--;
+            }
+        }
     }
 
-    // Optimal approach -  Dutch National Flag Algorithm
-    // T(n) = O(N)
-    // it has 3 pointers- low,mid,high with 3 rules
-    // rule 1: element between (0 to low-1) index will always be 0
-    // rule 2: element between (low to mid-1) index will always be 1
-    // rule 3: element between (high+1 to n-1) index will always be 2
+    /*
+     Optimal approach -  Dutch National Flag Algorithm
+     T(n) = O(N)
+     it has 3 pointers- low,mid,high with 3 rules
+     rule 1: element between (0 to low-1) index will always be 0
+     rule 2: element between (low to mid-1) index will always be 1
+     NOTE: arr[mid....high-1] contains unsorted part
+     rule 3: element between (high+1 to n-1) index will always be 2
+     */
+
     public static void sortColorsOptimalSolution(int[] nums) {
         int n=nums.length;
         int low=0,mid=0,high=n-1;
@@ -96,6 +130,13 @@ public class SortColors {
                 high--;
             }
         }
+    }
+
+    public static void swap(int[] nums, int i, int j)
+    {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     // main function

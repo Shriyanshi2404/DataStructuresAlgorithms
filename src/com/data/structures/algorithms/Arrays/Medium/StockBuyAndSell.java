@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class StockBuyAndSell {
 
-    // Brute force approach
-    // T(n) = O(N^2)
-    // Intuition: We can simply use 2 loops and track every transaction and maintain a variable maxProfit to contain the max value among all transactions.
+    /*
+     Brute force approach
+     T(n) = O(N^2)
+     Intuition: We can simply use 2 loops and track every transaction and maintain a variable maxProfit to contain the max value among all transactions.
+     */
     public static int maxProfit(int[] prices) {
         int maxProfit = 0;
         int diff=0;
@@ -28,23 +30,25 @@ public class StockBuyAndSell {
         return maxProfit;
     }
 
-    // Optimal Approach
-    // T(n) = O(N)
-    // We can maintain a minimum from the start of the array and compare it with every element of the array
-    // if it is greater than the minimum then take the difference and maintain it in max, otherwise update the minimum.
+    /*
+    Optimal Approach
+     T(n) = O(N)
+     We can maintain a minimum from the start of the array and compare it with every element of the array
+     if it is greater than the minimum then take the difference and maintain it in max, otherwise update the minimum.
+     */
     public static int maxProfitOptimalApproach(int[] prices) {
         int maxProfit = 0;
         int minPrice = prices[0];
-        int n=prices.length;
 
-        for(int i=1;i<n;i++)
+        for(int i=1;i<prices.length;i++)
         {
-            if(minPrice > prices[i])
-            {
-                minPrice = prices[i];
-            }
-            int diff = prices[i]-minPrice;
-            maxProfit = Math.max(maxProfit, diff);
+            int sellingPrice = prices[i];
+            int profit = sellingPrice - minPrice;
+            if(profit > maxProfit)
+                maxProfit = profit;
+
+            if(sellingPrice < minPrice)
+                minPrice = sellingPrice;
         }
         return maxProfit;
     }
