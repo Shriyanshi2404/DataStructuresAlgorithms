@@ -8,7 +8,15 @@ import java.util.stream.Collectors;
 
 public class TwoSum {
 
-    // Brute Force Approach T(N) = O(N^2)
+    /*
+     Brute force
+     T(n) = O(N^2)
+     1. Traverse through array using outer loop from i=0 to n-1
+     2. Now traverse through array from j=i+1 t n-1
+     3. everytime check if arr[i]+arr[j] == target,
+     4. if yes, then assign 'i' and 'j' to result array and return
+     5. if no indices found then simply return array with {-1,-1}
+    */
     static int[] twoSum(int[] nums, int target)
     {
         int arr[] = {-1,-1};
@@ -29,17 +37,25 @@ public class TwoSum {
         return arr;
     }
 
-    // Better Approach using HashMap T(N) = O(N logN)
+    /*
+    Better Approach
+    T(n) = O(N*logN)
+    1. Create a hashmap to store the elements and it's index
+    2. Traverse through array using loop from i=0 to n-1
+    3. Now find the remaining sum by target-nums[i]
+    4. Check if remaining sum as a key exists in hashmap
+    5. if yes, then assign 'i' and value of that key from map to result array and return
+    6. if no, then add current element and it's index into hashmap
+    7. at last return resultant array
+    */
     static int[] twoSumBetterApproach(int[] nums, int target) {
         int arr[] = {-1,-1};
-
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for(int i=0; i<nums.length; i++)
         {
             // second element will be
             int element = (target - nums[i]);
-
             // find if second element is there in hashmap
             if(map.containsKey(element))
             {
@@ -48,7 +64,6 @@ public class TwoSum {
                 arr[1] = map.get(element);
                 return arr;
             }
-
             // when map does not contain second element, it means no such pair found
             // add current elemnet with index in hashmap
             else
@@ -59,41 +74,45 @@ public class TwoSum {
         return arr;
     }
 
-    // Optimal Approach using 2-pointer T(N) = O(N)+O(N logN)
-    static int[] twoSumOptimalApproach(int[] nums, int target) {
-        int arr[] = {-1,-1};
-
+    /*
+    Optimal Approach
+    T(n) = O(N) + O(N*logN)
+    1. We will sort the given array first.
+    2. Now, we will take two pointers i.e. left, which points to the first index, and right, which points to the last index.
+    3. Now using a loop we will check the sum of arr[left] and arr[right] until left < right.
+       - If arr[left] + arr[right] > target, we will decrement the right pointer.
+       - If arr[left] + arr[right] < target, we will increment the left pointer.
+       - If arr[left] + arr[right] == target, we will return the result.
+    4. Finally, if no results are found we will return “No” or {-1, -1}.
+    */
+    public static int[] twoSumOptimal(int[] nums, int target) {
+        int[] arr = {-1, -1};
         // to get actual index we have to store elements in another array
-        List<Integer> list =  Arrays.stream(nums).boxed().collect(Collectors.toList());
+        List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
 
-        // sorting the array
+        int left = 0;
+        int right = nums.length-1;
         Arrays.sort(nums);
-
-        // keeping two pointers at first and last element respectively
-        int i = 0, j = nums.length-1;
-
-        // run a loop until left pointer does not crosses right pointer
-        while(i < j)
+        while(left < right)
         {
-            int sum = nums[i] + nums[j];
-
+            int sum = nums[left]+nums[right];
             // check if sum is equal to targt, if yes return indices
             if(sum == target)
             {
-                arr[0] = list.indexOf(nums[i]);
-                arr[1] = list.lastIndexOf(nums[j]);
+                arr[0] = list.indexOf(nums[left]);
+                arr[1] = list.lastIndexOf(nums[right]);
+                left++;
+                right--;
                 return arr;
             }
-
             // if sum is less than target, which means we have to shift forward
             // so that sum can increase
             else if(sum < target)
-                i++;
-
-                // if sum is greater than target, which means we are exceeding need to shift backward
-                // so that sum can decrease
+                left++;
+            // if sum is greater than target, which means we are exceeding need to shift backward
+            // so that sum can decrease
             else
-                j--;
+                right--;
         }
         return arr;
     }
@@ -109,10 +128,10 @@ public class TwoSum {
             arr[i] = s.nextInt();
         }
         int target = s.nextInt();
-        int ans[] = twoSumOptimalApproach(arr, target);
+        int ans[] = twoSumOptimal(arr, target);
         for(int i=0; i<ans.length; i++)
         {
-            System.out.println(ans[i] + " ");
+            System.out.print(ans[i] + " ");
         }
     }
 }

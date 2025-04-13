@@ -6,39 +6,44 @@ import java.util.Scanner;
 
 public class LongestConsecutiveSequence {
 
-    public static boolean linearSearch(int[] nums, int element)
-    {
-        for(int i=0;i<nums.length;i++)
+    /*
+    Brute force approach
+    T(N) = O(N^2)
+    Idea: For every element in an array say 'x' we will try to find out the next consecutive element i.e. (x+1) in rest of the array and if found then find (x+2), (x+3).. so on
+    1. Define variables to store max length as 1
+    2. Traverse through the array from i=0 to n-1
+    3. during traversal, store current element as 'x' and currentLength as 1
+    4. Now, through inner while loop do linear search on array and try to find out next element i.e. (x+1)
+       - if (x+1) is found in an array
+       - then increment the current length by 1
+       - also increment x by x+1
+       - and run this inner loop until you are able to find next consecutive elements in an array
+    5. After coming out from while loop, compare maxLength with currentLength and update it
+    6. return maxLength
+    */
+    public static int lengthOfLongestConsecutiveSequenceBruteForce(int[] arr, int N) {
+        int maxLength = 1;
+        for(int i=0;i<N;i++)
         {
-            if(nums[i] == element)
-                return true;
-        }
-        return false;
-    }
-
-    // Brute Force approach
-    // T(n) = O(N^2)
-    public static int longestConsecutive(int[] nums) {
-
-        int count=1,maxLength=1;
-        if(nums.length == 0)
-            return 0;
-
-        for(int i=0;i<nums.length;i++)
-        {
-            count = 1;
-            int x = nums[i];
-
-            // will find if consecutive element of x is present in array or not
-            while(linearSearch(nums, x+1) == true)
+            int x = arr[i];
+            int count = 1;
+            while(linearSearch(arr, x+1) == true)
             {
-                // if present, then we will find next consecutive element
                 x = x+1;
                 count++;
             }
-            maxLength = Math.max(count, maxLength);
+            maxLength = Math.max(maxLength, count);
         }
         return maxLength;
+    }
+    public static boolean linearSearch(int[] nums, int x)
+    {
+        for(int ele : nums)
+        {
+            if(ele == x)
+                return true;
+        }
+        return false;
     }
 
     // Better approach
@@ -86,23 +91,32 @@ public class LongestConsecutiveSequence {
         return longest;
     }
 
-    // Optimal Approach
-    // T(n) = O(N)
-    // using set data structure and finding starting element of sequence
-    public static int longestConsecutiveOptimalApproach(int[] nums) {
-
-        int count=0, longest=1;
-        if(nums.length == 0)
-            return 0;
-
-        // to remove duplicates, we are using set data structure
+    /*
+    Optimal approach
+    T(N) = O(N)  S(N) = O(N)
+    Idea: To remove duplicates elements we will use hashset to store elements of array
+    1. Define variables to store max length as 1 and count as 0 and hashset
+    2. Traverse through the array from i=0 to n-1 and store elements into hashset
+    3. Now, do traversal on set and check for below two conditions
+       - if (x-1) exists in set, then 'x' can't be starting point, so continue the traversal
+       - if (x-1) does not exists in set, then 'x' is the starting point, find next consecutive elements
+            - keep count as 1
+            - run a while loop until you find (x+1) element exists in set
+            - and everytime keep incrementing count by 1 and 'x' by x+1
+    4. once while loop finishes, mean you have found the length of consecutive elements
+    5. compare the maxLength with current length
+    6. return maxLength
+    */
+    public static int lengthOfLongestConsecutiveSequence(int[] arr, int N) {
         HashSet<Integer> set = new HashSet<>();
-        for(int i=0;i<nums.length;i++)
+        int count=0;
+        int maxLength = 1;
+
+        for(int ele : arr)
         {
-            set.add(nums[i]);
+            set.add(ele);
         }
 
-        // traversing through each element stored in set
         for(int x : set)
         {
             // to check if 'x' is starting element of the sequence
@@ -116,12 +130,11 @@ public class LongestConsecutiveSequence {
                     x = x+1;
                     count++;
                 }
-
                 // compare length of current seq. and maxLength so far stored in longest
-                longest = Math.max(count, longest);
+                maxLength = Math.max(maxLength, count);
             }
         }
-        return longest;
+        return maxLength;
     }
 
     // main function
@@ -134,6 +147,6 @@ public class LongestConsecutiveSequence {
         {
             nums[i] = s.nextInt();
         }
-        System.out.println(longestConsecutive(nums));
+        System.out.println(lengthOfLongestConsecutiveSequence(nums, n));
     }
 }
