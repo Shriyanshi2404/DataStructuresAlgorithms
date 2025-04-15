@@ -6,13 +6,15 @@ import java.util.Scanner;
 
 public class SpiralMatrix {
 
-    // Optimal approch
-    // T(n) = O(N*M)
-    // In this approach, we will be using four loops to print all four sides of the matrix.
-    //1st loop: This will print the elements from left to right.
-    //2nd loop: This will print the elements from top to bottom.
-    //3rd loop: This will print the elements from right to left.
-    //4th loop: This will print the elements from bottom to top.
+    /*
+    Optimal approch
+    T(n) = O(N*M)
+    In this approach, we will be using four loops to print all four sides of the matrix.
+    1st loop: This will print the elements from left to right.
+    2nd loop: This will print the elements from top to bottom.
+    3rd loop: This will print the elements from right to left.
+    4th loop: This will print the elements from bottom to top.
+    */
     public static List<Integer> spiralOrder(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;

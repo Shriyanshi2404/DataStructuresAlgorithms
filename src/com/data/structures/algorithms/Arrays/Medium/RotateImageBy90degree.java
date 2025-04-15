@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class RotateImageBy90degree {
 
-    // Brute Force approach
-    // T(n) = O(N^2)
-    // Take another dummy matrix of n*m
-    // then take the first row of the matrix and put it in the last column of the dummy matrix, take the second row of the matrix, and put it in the second last column of the matrix and so.
+    /*
+     Brute Force approach
+     T(n) = O(N^2)
+     Take another dummy matrix of n*m
+     then take the first row of the matrix and put it in the last column of the dummy matrix, take the second row of the matrix, and put it in the second last column of the matrix and so.
+     */
     public static int[][] rotateBruteForce(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
@@ -23,10 +25,12 @@ public class RotateImageBy90degree {
         return arr;
     }
 
-    // Optimal Approach
-    // T(n) = O(N)
-    // Step 1: Transpose the matrix. (transposing means changing columns to rows and rows to columns)
-    // Step 2: Reverse each row of the matrix.
+    /*
+     Optimal Approach
+     T(n) = O(N)
+     Step 1: Transpose the matrix. (transposing means changing columns to rows and rows to columns)
+     Step 2: Reverse each row of the matrix.
+    */
     public static void rotate(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
