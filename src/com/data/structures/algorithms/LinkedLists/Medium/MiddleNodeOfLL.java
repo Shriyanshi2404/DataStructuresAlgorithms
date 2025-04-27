@@ -1,8 +1,5 @@
 package com.data.structures.algorithms.LinkedLists.Medium;
 
-import com.data.structures.algorithms.LinkedLists.Easy.LengthOfLL;
-import com.data.structures.algorithms.LinkedLists.Easy.SearchNode;
-
 import java.util.Scanner;
 
 public class MiddleNodeOfLL {
