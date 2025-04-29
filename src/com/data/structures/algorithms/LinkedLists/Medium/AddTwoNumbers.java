@@ -15,7 +15,7 @@ public class AddTwoNumbers {
     }
 
     /*
-    Optimal Approach
+    Optimal Approach (NOTE: Given both lists are in reverse order, else you need to reverse both lists)
     T(n)=O(max(N, M)) S(n)=O(max(N, M)) -- worst case if we traverse through all the nodes in both lists
     Intuition: Keep track of the carry using a variable and simulate digits-by-digits sum starting from the head of the list, which contains the least significant digit.
     Visualization of the addition of two numbers:
