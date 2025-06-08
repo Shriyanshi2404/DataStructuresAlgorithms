@@ -26,7 +26,7 @@ public class FactorialOfN {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        // using fucntional way
+        // using functional way
         System.out.println("Factorial of "+ n + " is : " + factorial(n));
 
         // using parameterised way
