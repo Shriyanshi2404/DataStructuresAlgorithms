@@ -3,13 +3,17 @@ package com.data.structures.algorithms.Recursion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SumOfAllSubsets {
+/*
+Given a array arr of integers, return the sums of all subsets in the list. Return the sums in any order.
+Practice link: https://www.geeksforgeeks.org/problems/subset-sums2234/1
+*/
+public class SubsetI {
 
     /*
      Approach : Recursive method
      - Maintain a arraylist (say list),which is empty initially.
      - Define a function say "findSubsetSums" where you will be passing below parameters
-        - intial index as 0
+        - initial index as 0
         - original array
         - list to store the sum of subsets
         - variable "currentSum" to store the sum of each subset
