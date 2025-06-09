@@ -2,6 +2,10 @@ package com.data.structures.algorithms.Recursion;
 
 import java.util.Scanner;
 
+/*
+You are given a string s. Your task is to determine if the string is a palindrome. A string is considered a palindrome if it reads the same forwards and backwards.
+Practice link: https://www.geeksforgeeks.org/problems/palindrome-string0817/1
+*/
 public class PalindromicString {
 
     /*
@@ -37,7 +41,7 @@ public class PalindromicString {
    */
     public static boolean isPalindrome(int i, int n, String str)
     {
-        if(i >= (n/1))
+        if(i >= (n/2))
             return true;
 
         if(str.charAt(i) != str.charAt(n-i-1))
