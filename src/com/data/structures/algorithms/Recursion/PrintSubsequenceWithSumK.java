@@ -37,6 +37,7 @@ public class PrintSubsequenceWithSumK {
         currentSum += arr[index];
         printSubsequenceWithSumK(index+1, temp, arr, sum);
 
+        // not take the element
         temp.remove(temp.size()-1);
         currentSum -= arr[index];
         printSubsequenceWithSumK(index+1, temp, arr, sum);
