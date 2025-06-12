@@ -21,7 +21,7 @@ public class CombinationSumII {
     - Run a for loop to Check if the current index value can be added to our list.
       - If yes add it to the temp list and move the index by 1.
       - while moving the index skip the consecutive repeated elements because they will form duplicate sequences.
-      - Reduce the target by arr[i],call the recursive call for f(idx + 1,target - 1,ds,ans) after the call make sure to pop the element from the temp list.
+      - Reduce the target by arr[i],call the recursive call for f(idx + 1,target - 1,list,temp) after the call make sure to pop the element from the temp list.
       - if(arr[i] > target) then terminate the recursive call because there is no use to check as the array is sorted in the next recursive call the index will be moving by 1 all the elements to its right will be in increasing order.
     - Base Condition: Whenever the target value is zero add the ds to the ans return.
 
