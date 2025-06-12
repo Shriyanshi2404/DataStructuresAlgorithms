@@ -10,7 +10,7 @@ Given an integer array nums that may contain duplicates, return all possible sub
 The solution set must not contain duplicate subsets. Return the solution in any order.
 Practice link: https://leetcode.com/problems/subsets-ii/description/
 */
-public class SubsetII {
+public class SubsetSumII {
 
     /*
      Approach - Recursion using

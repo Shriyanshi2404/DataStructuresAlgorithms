@@ -7,7 +7,7 @@ import java.util.Scanner;
 Given a array arr of integers, return the sums of all subsets in the list. Return the sums in any order.
 Practice link: https://www.geeksforgeeks.org/problems/subset-sums2234/1
 */
-public class SubsetI {
+public class SubsetSumI {
 
     /*
      Approach : Recursive method
