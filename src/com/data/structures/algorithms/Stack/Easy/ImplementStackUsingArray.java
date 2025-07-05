@@ -2,6 +2,8 @@ package com.data.structures.algorithms.Stack.Easy;
 
 import java.util.Scanner;
 
+
+/** Problem link: <a href="https://www.geeksforgeeks.org/problems/implement-stack-using-array/1">...</a> */
 public class ImplementStackUsingArray {
     static class Stack {
         int top;

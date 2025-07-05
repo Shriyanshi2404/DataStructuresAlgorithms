@@ -1,5 +1,7 @@
 package com.data.structures.algorithms.Stack.Easy;
 
+/** Problem link: <a href="https://www.geeksforgeeks.org/problems/implement-stack-using-linked-list/1">...</a> */
+
 public class ImplementStackUsingLinkedLists {
     static class Stack {
         StackNode top;
