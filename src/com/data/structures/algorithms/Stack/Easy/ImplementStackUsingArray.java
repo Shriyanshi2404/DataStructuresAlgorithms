@@ -6,7 +6,7 @@ public class ImplementStackUsingArray {
     static class Stack {
         int top;
         int[] arr;
-        int capacity = 0;
+        int capacity;
 
         Stack(int capacity) {
             this.capacity = capacity;
@@ -21,7 +21,8 @@ public class ImplementStackUsingArray {
             top++;
             arr[top] = num;
         }
-        public int pop(){
+
+        public int pop() {
             if(isEmpty() == 1)
                 return -1;
 
@@ -29,23 +30,26 @@ public class ImplementStackUsingArray {
             top--;
             return ele;
         }
-        public int top(){
+
+        public int top() {
             if(isEmpty() == 1)
                 return -1;
             return arr[top];
         }
-        public int isEmpty()
-        {
+
+        public int isEmpty() {
             if(top == -1)
                 return 1;
             return 0;
         }
-        public int isFull(){
+
+        public int isFull() {
             if(top == capacity-1)
                 return 1;
             return 0;
         }
-        public int size(){
+
+        public int size() {
             return top+1;
         }
     }
