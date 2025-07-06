@@ -47,6 +47,11 @@ public class SumOfSubarraysMinimum {
      * 5. Finally, we will return the total sum modulo (10^9 + 7).
      * Time Complexity: O(n)
      * Space Complexity: O(n)
+     * For ex: arr = [3, 1, 2, 4]
+     * subarrays are: [3], [3, 1], [3, 1, 2], [3, 1, 2, 4], [1], [1, 2], [1, 2, 4], [2], [2, 4], [4]
+     * Contribution of each element as the minimum in all subarrays:  3: 1 times, 1: 6 times, 2: 2 times, 4: 1 time
+     * Total sum = 3*1 + 1*6 + 2*2 + 4*1 = 3 + 6 + 4 + 4 = 17
+     * Output: 17 % (10^9 + 7) = 17
      */
     public static int sumSubarrayMinimum(int[] arr) {
         int n = arr.length;
@@ -69,38 +74,47 @@ public class SumOfSubarraysMinimum {
         return (int) sum;
     }
 
+    /**
+     * This function finds the Next Smaller Element (NSE) for each element in the array.
+     * It uses a stack to maintain the indices of elements and fills the NSE array accordingly.
+     */
     public static void findNSE(int[] arr, int[] NSE)
     {
         Stack<Integer> st = new Stack<>();
         for(int i=arr.length-1; i>=0; i--)
         {
             int ele = arr[i];
-
-            while(!st.isEmpty() && st.peek() >= ele)
+            while(!st.isEmpty() && arr[st.peek()] >= ele)
                 st.pop();
+
             if(st.isEmpty())
-                NSE[i] = arr.length; // No smaller element to the right
+                NSE[i] = arr.length;  // No smaller element to the right
             else
                 NSE[i] = st.peek();
-            st.push(ele);
+
+            st.push(i);
         }
     }
 
+    /**
+     * This function finds the Previous Smaller Element (PSE) for each element in the array.
+     * It uses a stack to maintain the indices of elements and fills the PSE array accordingly.
+     */
     public static void findPSE(int[] arr, int[] PSE)
     {
         Stack<Integer> st = new Stack<>();
-        for(int i=0; i<arr.length; i++)
+        for(int i=0;i<arr.length;i++)
         {
             int ele = arr[i];
-
-            while(!st.isEmpty() && st.peek() >= ele)
+            while(!st.isEmpty() && arr[st.peek()] > ele)
                 st.pop();
 
             if(st.isEmpty())
                 PSE[i] = -1; // No smaller element to the left
             else
                 PSE[i] = st.peek();
-            st.push(ele);
+
+            st.push(i);
         }
     }
 
