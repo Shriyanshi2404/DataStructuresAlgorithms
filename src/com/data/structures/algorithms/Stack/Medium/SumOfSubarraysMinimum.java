@@ -47,6 +47,11 @@ public class SumOfSubarraysMinimum {
      * 5. Finally, we will return the total sum modulo (10^9 + 7).
      * Time Complexity: O(n)
      * Space Complexity: O(n)
+     * For ex: arr = [3, 1, 2, 4]
+     * subarrays are: [3], [3, 1], [3, 1, 2], [3, 1, 2, 4], [1], [1, 2], [1, 2, 4], [2], [2, 4], [4]
+     * Contribution of each element as the minimum in all subarrays:  3: 1 times, 1: 6 times, 2: 2 times, 4: 1 time
+     * Total sum = 3*1 + 1*6 + 2*2 + 4*1 = 3 + 6 + 4 + 4 = 17
+     * Output: 17 % (10^9 + 7) = 17
      */
     public static int sumSubarrayMinimum(int[] arr) {
         int n = arr.length;
