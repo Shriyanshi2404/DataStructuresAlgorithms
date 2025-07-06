@@ -147,6 +147,11 @@ public class SumOfSubarrayRanges {
         long sumMax = 0;
         for (int i=0; i<n; i++)
         {
+            /**
+             * PSE[i] is the index of the Previous Smaller Element for nums[i].
+             * (i - PSE[i]) gives the count of possible starting positions for subarrays ending at i where nums[i] is the minimum.
+             * This value is used to compute the total contribution of nums[i] as the minimum in all subarrays.
+             */
             long leftMin = i - PSE[i];
             long rightMin = NSE[i] - i;
             long leftMax = i - PGE[i];
