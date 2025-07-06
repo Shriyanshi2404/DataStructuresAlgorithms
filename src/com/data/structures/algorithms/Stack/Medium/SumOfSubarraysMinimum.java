@@ -69,38 +69,47 @@ public class SumOfSubarraysMinimum {
         return (int) sum;
     }
 
+    /**
+     * This function finds the Next Smaller Element (NSE) for each element in the array.
+     * It uses a stack to maintain the indices of elements and fills the NSE array accordingly.
+     */
     public static void findNSE(int[] arr, int[] NSE)
     {
         Stack<Integer> st = new Stack<>();
         for(int i=arr.length-1; i>=0; i--)
         {
             int ele = arr[i];
-
-            while(!st.isEmpty() && st.peek() >= ele)
+            while(!st.isEmpty() && arr[st.peek()] >= ele)
                 st.pop();
+
             if(st.isEmpty())
-                NSE[i] = arr.length; // No smaller element to the right
+                NSE[i] = arr.length;  // No smaller element to the right
             else
                 NSE[i] = st.peek();
-            st.push(ele);
+
+            st.push(i);
         }
     }
 
+    /**
+     * This function finds the Previous Smaller Element (PSE) for each element in the array.
+     * It uses a stack to maintain the indices of elements and fills the PSE array accordingly.
+     */
     public static void findPSE(int[] arr, int[] PSE)
     {
         Stack<Integer> st = new Stack<>();
-        for(int i=0; i<arr.length; i++)
+        for(int i=0;i<arr.length;i++)
         {
             int ele = arr[i];
-
-            while(!st.isEmpty() && st.peek() >= ele)
+            while(!st.isEmpty() && arr[st.peek()] > ele)
                 st.pop();
 
             if(st.isEmpty())
                 PSE[i] = -1; // No smaller element to the left
             else
                 PSE[i] = st.peek();
-            st.push(ele);
+
+            st.push(i);
         }
     }
 
