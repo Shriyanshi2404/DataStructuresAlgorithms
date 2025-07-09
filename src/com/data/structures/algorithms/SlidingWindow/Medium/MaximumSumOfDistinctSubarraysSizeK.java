@@ -40,9 +40,9 @@ public class MaximumSumOfDistinctSubarraysSizeK {
             set.add(nums[r]);
             sum = sum + nums[r];
 
+            // check if we have a valid window of size k
             if(r-l+1 == k)
             {
-                System.out.println(sum);
                 maxSum = Math.max(maxSum, sum);
                 // since we checked for valid window,
                 // now we can shift forward to check for another window
