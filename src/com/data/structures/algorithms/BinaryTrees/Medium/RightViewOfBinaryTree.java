@@ -34,6 +34,8 @@ public class RightViewOfBinaryTree {
      *      - Add its left child to the queue if it exists.
      *      - Add its right child to the queue if it exists.
      * 5. Return the list containing the right side view of the binary tree.
+     * Time Complexity: O(n) where n is the number of nodes in the tree.
+     * Space Complexity: O(n) for storing the queue and the result list.
      */
     public static List<Integer> rightSideView(TreeNode root) {
         List<Integer> list = new ArrayList<>();
