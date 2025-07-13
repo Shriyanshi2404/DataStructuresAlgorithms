@@ -1,8 +1,6 @@
 package com.data.structures.algorithms.BinaryTrees.Easy;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Problem Link: https://leetcode.com/problems/binary-tree-inorder-traversal/
@@ -66,6 +64,58 @@ public class InorderTraversal {
             i++;
         }
         return root;
+    }
+
+    /**
+     * Approach for Iterative Inorder Traversal:
+     * 1. Initialize:
+     *    - Create empty ArrayList for result
+     *    - Create empty Stack for tracking nodes
+     *    - If root is null, return empty list
+     *    - Set current pointer to root
+     * 2. Process Left Subtree:
+     *    - While the current node is not null
+     *      - Push current node to stack
+     *      - Move to left child (similarly we used to do in recursive approach)
+     * 3. Process Node and Right Subtree:
+     *    - When current becomes null that means we have reached the leftmost node
+     *      - If stack is empty, break
+     *      - Pop node from stack
+     *      - Add node's value to result list
+     *      - Move to right child of the popped node
+     * 4. Repeat Steps 2-3 until stack is empty and current is null
+     *
+     * - LNR pattern maintained by:
+     *   - Going left as far as possible
+     *   - Processing node (adding to result)
+     *   - Moving to right subtree
+     * Time: O(n) - visit each node once
+     * Space: O(h) - h is the height of the tree
+     */
+
+    public static List<Integer> inorderTraversalIterative(TreeNode root, List<Integer> list) {
+        Stack<TreeNode> st = new Stack<>();
+        if(root == null)
+            return list;
+
+        TreeNode curr = root;
+        while(true)
+        {
+            if(curr != null)
+            {
+                st.push(curr);
+                curr = curr.left;
+            }
+            else
+            {
+                if(st.isEmpty())
+                    break;
+                curr = st.pop();
+                list.add(curr.val);
+                curr = curr.right;
+            }
+        }
+        return list;
     }
 
     public static void main(String[] args) {
