@@ -15,7 +15,7 @@ public class HeightOfBinaryTree {
             this.right = null;
         }
     }
-    /**
+    /** RECURSIVE APPROACH
      * Height of a Binary Tree
      * 1. The height of a binary tree is the number of edges on the longest path from the root to a leaf node.
      * 2. If the tree is empty, the height is 0.
@@ -31,6 +31,47 @@ public class HeightOfBinaryTree {
         int leftHeight = maxDepth(root.left);
         int rightHeight = maxDepth(root.right);
         return 1+Math.max(leftHeight, rightHeight);
+    }
+
+    /** ITERATIVE APPROACH
+     * Height of a Binary Tree using Iteration
+     * 1. Use a queue to perform level order traversal.
+     * 2. Initialise a queue for level order traversal and a variable `level` to track the depth.
+     * 3. Check if the root is null, if so return the answer as 0 indicating an empty tree.
+     * 4. Add the root node to the queue.
+     * 5. While the queue is not empty, repeat the following steps:
+     *    - Create a variable `size` to store the current size of the queue.
+     *    - For each node at the current level, do the following:
+     *      - Pop the front node from the queue.
+     *      - If the node has a left child, add it to the queue.
+     *      - If the node has a right child, add it to the queue.
+     *      - Decrease the size of the queue by 1.
+     *     - After processing all nodes at the current level, increment the `level` variable by 1.
+     * 6. Continue this process until the queue is empty.
+     * 7. The value of `level` at the end will be the height of the binary tree.
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) for storing the queue
+     */
+    public static int heightOfBT(TreeNode root) {
+        if(root == null)
+            return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int level = 0;
+        while(!q.isEmpty())
+        {
+            int size = q.size();
+            for(int i=0; i<size; i++)
+            {
+                TreeNode curr = q.poll();
+                if(curr.left != null)
+                    q.add(curr.left);
+                if(curr.right != null)
+                    q.add(curr.right);
+            }
+            level++;
+        }
+        return level;
     }
 
     public static TreeNode constructBinaryTree(Integer[] arr)
