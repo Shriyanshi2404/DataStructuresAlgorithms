@@ -1,9 +1,6 @@
 package com.data.structures.algorithms.BinaryTrees.Easy;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Problem Link: https://leetcode.com/problems/binary-tree-preorder-traversal/
@@ -22,6 +19,47 @@ public class PreOrderTraversal {
             this.right = null;
         }
     }
+
+    /** Iterative PreOrder Traversal of a Binary Tree (NLR)
+     * 1. Initialize:
+     *    - Create an empty ArrayList to store the result
+     *    - If root is null, return empty list
+     *    - Create an empty Stack to simulate recursion
+     *
+     * 2. Start Traversal:
+     *    - Push root node to stack initially
+     *
+     * 3. Process Nodes (while stack is not empty):
+     *    - Pop current node from stack
+     *    - Add current node's value to result list
+     *    - Push right child first (if exists)
+     *    - Push left child second (if exists)
+     *    - Note: We push right first so left gets processed first (LIFO)
+     *            So, Order of pushing (right then left) ensures NLR pattern
+     *
+     * 4. Return: Final result list containing preorder traversal
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) for storing the result
+     */
+    public static List<Integer> preorderTraversalIterative(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null)
+            return list;
+
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while(!st.isEmpty())
+        {
+            TreeNode curr = st.pop();
+            list.add(curr.val);
+            if(curr.right != null)
+                st.push(curr.right);
+            if(curr.left != null)
+                st.push(curr.left);
+        }
+        return list;
+    }
+
 
     /**
      * PreOrder Traversal of a Binary Tree (NLR)
@@ -84,6 +122,6 @@ public class PreOrderTraversal {
         // Assuming constructBinaryTree is implemented to create a binary tree from the array
         TreeNode root = constructBinaryTree(arr);
         List<Integer> result = preorderTraversal(root);
-        System.out.println("PreOrder traversal is: " + result);
+        System.out.println("PreOrder traversal is: " + result); // Output: [1, 2, 4, 5, 6, 7, 3, 8, 9]
     }
 }
