@@ -3,6 +3,7 @@ package com.data.structures.algorithms.BinaryTrees.Easy;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/** Problem link: https://leetcode.com/problems/maximum-depth-of-binary-tree/description/ */
 public class HeightOfBinaryTree {
 
     static class TreeNode {
