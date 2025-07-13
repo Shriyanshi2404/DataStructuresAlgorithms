@@ -73,6 +73,6 @@ public class PostOrderTraversal {
         TreeNode root = constructBinaryTree(arr);
         List<Integer> postOrderList = new LinkedList<>();
         findPostOrder(root, postOrderList);
-        System.out.println("PostOrder Traversal: " + postOrderList);
+        System.out.println("PostOrder Traversal: " + postOrderList); // Output: [4, 6, 7, 5, 2, 9, 8, 3, 1]
     }
 }
