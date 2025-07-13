@@ -25,7 +25,21 @@ public class LevelOrderTraversal {
     /**
      * Level Order Traversal of a Binary Tree
      * 1. Use a queue to traverse the tree level by level.
-     * 2. For each level, store the values in a list and add it to the result list.
+     * 2. Initialise an empty queue data structure to store the nodes during traversal. Create a ArrayList to store the level order traversal.
+     *    - If the tree is empty, return this empty arraylist.
+     * 3. Add the root node to the queue.
+     * 4. While the queue is not empty, repeat the following steps:
+     *    - Create a new inner ArrayList to store the values of the current level.
+     *    - Get the current size of the queue. This size indicates the number of nodes at the current level.
+     *    - For each node at the current level, do the following:
+     *      - Pop the front node from the queue.
+     *      - Store the current node to the inner ArrayList.
+     *      - If node has a left child, add it to the queue.
+     *      - If node has a right child, add it to the queue.
+     *      - Decrease the size of the queue by 1.
+     *    - After processing all nodes at the current level, add the inner ArrayList to the result list.
+     * 5. Continue this process until the queue is empty.
+     * 6. Return the result list containing the level order traversal of the binary tree.
      * Time Complexity: O(n)
      * Space Complexity: O(n) for storing the result
      */
