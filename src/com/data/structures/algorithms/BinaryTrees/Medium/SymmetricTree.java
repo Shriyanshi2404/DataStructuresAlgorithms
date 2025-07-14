@@ -1,4 +1,4 @@
-package com.data.structures.algorithms.BinaryTrees.Easy;
+package com.data.structures.algorithms.BinaryTrees.Medium;
 
 import java.util.LinkedList;
 import java.util.Queue;
