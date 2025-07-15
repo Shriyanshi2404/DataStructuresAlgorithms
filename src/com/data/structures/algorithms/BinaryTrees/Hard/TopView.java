@@ -31,6 +31,8 @@ public class TopView {
 
 
     /** This method returns the top view of a binary tree.
+     *  Idea: In a map: update the key 'vertical line' with the current node's data if key is not present, meaning this is the only node can be viewed from the top view.
+     *
      * It uses a queue for level order traversal and a TreeMap to store the first node encountered at each vertical line.
      * 1. Initialize an empty list to store the top view nodes.
      * 2. If the root is null, return the empty list.
