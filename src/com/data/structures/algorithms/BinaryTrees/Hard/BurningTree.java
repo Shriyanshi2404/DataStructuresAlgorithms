@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-/** Problem link: https://leetcode.com/problems/burn-a-binary-tree/description/ */
+/** Problem link: https://www.geeksforgeeks.org/problems/burning-tree/1 */
 public class BurningTree {
 
     static class Node {
