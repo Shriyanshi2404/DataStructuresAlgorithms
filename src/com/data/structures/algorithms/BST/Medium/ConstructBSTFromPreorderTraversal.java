@@ -1,7 +1,5 @@
 package com.data.structures.algorithms.BST.Medium;
 
-import com.data.structures.algorithms.BinaryTrees.Hard.SerializeAndDeserialize;
-
 import java.util.*;
 
 /** Problem link: https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/ */
