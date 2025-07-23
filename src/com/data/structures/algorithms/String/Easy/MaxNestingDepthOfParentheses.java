@@ -8,6 +8,7 @@ package com.data.structures.algorithms.String.Easy;
 public class MaxNestingDepthOfParentheses {
 
     /** Algorithm:
+     * The depth of any character in the VPS is the (number of left brackets before it) - (number of right brackets before it)
      * 1. Initialize two counters: leftBraces and rightBraces to track the number of open and closed parentheses.
      * 2. Iterate through each character in the string:
      *    - If the character is '(', increment leftBraces.
