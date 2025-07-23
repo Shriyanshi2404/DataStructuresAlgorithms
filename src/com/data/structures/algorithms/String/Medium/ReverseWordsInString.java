@@ -15,16 +15,17 @@ public class ReverseWordsInString {
     public static String reverseWords(String s) {
         // removing extra spaces
         s = s.trim().replaceAll("\\s+", " ");
+
         // converting string to array of words
         String[] words = s.split(" ");
-        String str = "";
-        for(int i=words.length-1; i>=0; i--)
+        StringBuilder str = new StringBuilder();
+        for(int i=words.length-1; i>=0 ;i--)
         {
-            str = str + words[i];
-            if(i != 0)
-                str = str + " "; // adding space between words
+            str.append(words[i]);
+            if(i!=0)
+                str.append(" "); // adding space between words
         }
-        return str;
+        return str.toString();
     }
 
     public static void main(String[] args) {
