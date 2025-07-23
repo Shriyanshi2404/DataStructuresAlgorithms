@@ -15,6 +15,8 @@ public class MaxNestingDepthOfParentheses {
      * 3. Calculate the current depth as leftBraces - rightBraces
      * 4. Update maxDepth if the current depth is greater than the previous maxDepth.
      * 5. Return maxDepth after processing the entire string.
+     * Time Complexity: O(n), where n is the length of the string.
+     * Space Complexity: O(1), since we are using a constant amount of space for counters.
      */
     public static int maxDepth(String s) {
         int maxDepth = 0;
