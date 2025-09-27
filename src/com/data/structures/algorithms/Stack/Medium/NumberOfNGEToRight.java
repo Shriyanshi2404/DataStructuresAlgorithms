@@ -66,22 +66,25 @@ public class NumberOfNGEToRight {
         {
             int ele = arr[i];
             
+            // pop all the smaller or equal elements from the main stack and push them into temp stack
             while(!st.isEmpty() && st.peek() <= ele)
             {
                 temp.push(st.pop());
             }
             // storing the count of greater elements into list
             list.add(st.size());
+            // push the current element into temp stack
             temp.push(ele);
             
+            // push all the elements from temp stack to main stack
             while(!temp.isEmpty())
             {
                 st.push(temp.pop());
             }
         }
-        
+        // reverse the list to get the count of greater elements to the right of each element
         Collections.reverse(list);
-        
+        // return the result array
         for(int i=0; i<queries; i++)
         {
             result[i] = list.get(indices[i]);
