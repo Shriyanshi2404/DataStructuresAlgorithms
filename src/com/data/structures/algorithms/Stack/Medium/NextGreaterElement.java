@@ -12,12 +12,12 @@ import java.util.Stack;
  * 3. We will iterate through the array from right to left.
  * 4. Run a loop from 2nd last element to 0th element of the array
  * 5. If the current element is less than the top element of the stack
- * - add top element of stack to the list and push the current element into stack
+ *     - add top element of stack to the list and push the current element into stack
  * 6. If the current element is greater than the top element of the stack
- * - we will pop all the smaller or equal element from the stack until we find a greater element or the stack is empty.
- * - if stack is empty, add -1 to the list
- * - if stack is not empty, add top element of stack to the list
- * - at last push the current element into stack
+ *    - we will pop all the smaller or equal element from the stack until we find a greater element or the stack is empty.
+ *    - if stack is empty, add -1 to the list
+ *    - if stack is not empty, add top element of stack to the list
+ *    - at last push the current element into stack
  * 7. At last reverse the list and return it
  * Time Complexity: O(n)
  * Space Complexity: O(n)
